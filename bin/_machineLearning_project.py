@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_curve
 
 
-#custom tokenizer for URLs. 
+#custom tokenizer for URLs.
 #first split - "/"
 #second split - "-"
 #third split - "."
@@ -139,11 +139,11 @@ fpr_neural,tpr_neural,thresholds = roc_curve(y_test,NeuralNetwork_y_pred)
 # Plot the ROC Curve
 plt.plot(fpr_logistic,tpr_logistic, label='Logistic Regression',lw=1)
 plt.plot(fpr_svm, tpr_svm, label='SVM', lw=1, alpha=0.3)
-plt.plot(fpr_random, tpr_random, label='Random Forest', lw=1)
-plt.plot(fpr_neural, tpr_neural, label='Neural Network',lw=1, alpha=0.3)
-
+plt.plot(fpr_random, tpr_random, 'g^',label='Random Forest', lw=1)
+plt.plot(fpr_neural, tpr_neural, 'g-.',label='Neural Network',lw=1, alpha=0.3)
 plt.legend(loc='lower right')
 plt.ylim(0, 1.05)
 plt.show()
+
 
 
