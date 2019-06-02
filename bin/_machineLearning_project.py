@@ -38,7 +38,7 @@ def getTokens(input):
 
 #read from a CSV file
 data1 = pd.read_csv("final.csv",',',error_bad_lines=False)	# reading training file
-data2 = pd.read_csv("feed.csv",',')                          # reading test file
+data1 = pd.read_csv("feed.csv",',')                          # reading test file
 
 #convert it into numpy array and shuffle the dataset
 data1 = np.array(data1)
@@ -108,7 +108,7 @@ plt.show()
 
 #4 - Neural Networks
 print("Neural Network results\n")
-NeuralNetworkModel = MLPClassifier(hidden_layer_sizes=(15,10),max_iter=500)
+NeuralNetworkModel = MLPClassifier(activation='relu',hidden_layer_sizes=(15,10),max_iter=500)
 NeuralNetworkModel.fit(X_train, y_train)
 
 NeuralNetwork_y_pred = NeuralNetworkModel.predict(X_test)
