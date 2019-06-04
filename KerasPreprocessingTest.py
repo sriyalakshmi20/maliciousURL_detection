@@ -1,6 +1,6 @@
 from keras.preprocessing.text import Tokenizer
 
-samples = ['The cat sat on the mat.', 'The dog ate my homework.']
+samples = ['The cat sat on the mat.', 'The dog ate the homework.']
 
 tokenizer = Tokenizer(num_words=1000)
 tokenizer.fit_on_texts(samples)

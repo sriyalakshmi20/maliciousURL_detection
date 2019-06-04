@@ -15,10 +15,10 @@ def getAnalysis(TP,TN,FP,FN):
     analysisMatrix.append(FNR)
     return analysisMatrix
 
-Logmatrix = getAnalysis(9980,1430,44,24)
-SVMmatrix = getAnalysis(9912,1453,22,1)
-RandomForest = getAnalysis(9908,1454,26,0)
-MLP = getAnalysis(9915,1454,19,0)
+Logmatrix = getAnalysis(143 , 3327 , 426 , 5)
+SVMmatrix = getAnalysis(357 , 3324 , 212 , 8)
+RandomForest = getAnalysis(338 , 3324 , 231 , 8)
+MLP = getAnalysis(446 , 3296 , 123 , 36)
 print(Logmatrix)
 print(SVMmatrix)
 print(RandomForest)
