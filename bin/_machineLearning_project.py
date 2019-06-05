@@ -2,20 +2,18 @@
 
 import pandas as pd
 import numpy as np
-import time
+import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 import random
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import cross_val_score
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
-from sklearn.multiclass import OneVsRestClassifier
 from sklearn.ensemble import BaggingClassifier,RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_curve
 
 
 #custom tokenizer for URLs.
@@ -36,11 +34,17 @@ def getTokens(input):
     allTokens = list(set(allTokens))
     if 'com' in allTokens:
         allTokens.remove('com')
+    if 'org' in allTokens:
+        allTokens.remove('org')
+    if 'www' in allTokens:
+        allTokens.remove('www')
+    if 'net' in allTokens:
+        allTokens.remove('net')
+    # allTokens = (list(nltk.bigrams(allTokens)))
     return allTokens
 
 #read from a CSV file
 data1 = pd.read_csv("final4.csv",',')	# reading training file
-#data1 = pd.read_csv("feed.csv",',')                          # reading test file
 
 #convert it into numpy array and shuffle the dataset
 data1 = np.array(data1)
@@ -51,6 +55,7 @@ y1 = [d[1] for d in data1]
 url = [d[0] for d in data1]
 vectorizer = TfidfVectorizer(tokenizer=getTokens)
 x1 = vectorizer.fit_transform(url)
+
 
 
 #split the data set in to train and test
