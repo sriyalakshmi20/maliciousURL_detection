@@ -2,8 +2,8 @@
 
 import pandas as pd
 import numpy as np
-import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
+import nltk
 import random
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -11,7 +11,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
-from sklearn.ensemble import BaggingClassifier,RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
 
@@ -40,7 +40,7 @@ def getTokens(input):
         allTokens.remove('www')
     if 'net' in allTokens:
         allTokens.remove('net')
-    # allTokens = (list(nltk.bigrams(allTokens)))
+    #allTokens = (list(nltk.bigrams(allTokens)))
     return allTokens
 
 #read from a CSV file
@@ -55,8 +55,6 @@ y1 = [d[1] for d in data1]
 url = [d[0] for d in data1]
 vectorizer = TfidfVectorizer(tokenizer=getTokens)
 x1 = vectorizer.fit_transform(url)
-
-
 
 #split the data set in to train and test
 X_train, X_test, y_train, y_test = train_test_split(x1, y1, test_size=0.3, train_size=0.7)
@@ -136,29 +134,4 @@ sns.heatmap(confusion_matrix(y_test,NeuralNetwork_y_pred),annot=True,fmt="d")
 plt.xlabel('Predicted Values')
 plt.ylabel('Actual Values')
 plt.show()
-
-# ROC Curves for the Four classifiers
-
-'''
-# Logistic Regression
-fpr_logistic,tpr_logistic,thresholds = roc_curve(y_test,logisticRegressionData_y_pred)
-
-# SVM
-fpr_svm,tpr_svm,thresholds = roc_curve(y_test,SVMdata_y_pred)
-
-# RandomForest
-fpr_random,tpr_random,thresholds = roc_curve(y_test, randomForestData_y_pred)
-
-# Neural Network
-fpr_neural,tpr_neural,thresholds = roc_curve(y_test,NeuralNetwork_y_pred)
-
-# Plot the ROC Curve
-plt.plot(fpr_logistic,tpr_logistic, label='Logistic Regression',lw=1)
-plt.plot(fpr_svm, tpr_svm, label='SVM', lw=1, alpha=0.3)
-plt.plot(fpr_random, tpr_random, 'g-',label='Random Forest', lw=1)
-plt.plot(fpr_neural, tpr_neural, 'g-.',label='Neural Network',lw=1, alpha=0.3)
-plt.legend(loc='lower right')
-plt.ylim(0, 1.05)
-plt.show()
-'''
 
